@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "줄다리기",
+    "subtitle": "팀워크를 발휘하는 전통 경기",
+    "image": "/static/booth-1.jpg",
+    "method": "두 팀이 밧줄을 잡고 자기 진영으로 끌어당깁니다.",
+    "winCondition": "상대팀을 중앙선 너머로 끌어당기면 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 2,
+    "name": "림보",
+    "subtitle": "유연성을 겨루는 게임",
+    "image": "/static/booth-2.jpg",
+    "method": "봉 아래를 허리를 뒤로 젖혀 통과합니다.",
+    "winCondition": "가장 낮은 높이를 통과한 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 3,
+    "name": "이어달리기",
+    "subtitle": "속도와 팀워크의 조화",
+    "image": "/static/booth-3.jpg",
+    "method": "바통을 이어받아 정해진 코스를 달립니다.",
+    "winCondition": "가장 먼저 결승선을 통과한 팀이 승리",
+    "conquestPoints": "12 포인트"
+  },
+  {
+    "id": 4,
+    "name": "공 던지기",
+    "subtitle": "정확한 투구 실력을 겨루는 게임",
+    "image": "/static/booth-4.jpg",
+    "method": "지정된 거리에서 과녁을 향해 공을 던집니다.",
+    "winCondition": "가장 높은 점수를 획득한 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 5,
+    "name": "장애물 달리기",
+    "subtitle": "체력과 민첩성을 시험하는 경기",
+    "image": "/static/booth-5.jpg",
+    "method": "다양한 장애물을 넘으며 결승선까지 달립니다.",
+    "winCondition": "가장 빠른 시간에 완주한 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 6,
+    "name": "투호",
+    "subtitle": "집중력을 겨루는 전통 놀이",
+    "image": "/static/booth-6.jpg",
+    "method": "일정 거리에서 화살을 통에 던져 넣습니다.",
+    "winCondition": "가장 많은 화살을 넣은 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 7,
+    "name": "윷놀이",
+    "subtitle": "전략과 운이 함께하는 전통 게임",
+    "image": "/static/booth-7.jpg",
+    "method": "윷을 던져 나온 결과에 따라 말을 이동합니다.",
+    "winCondition": "모든 말을 먼저 골인시킨 팀이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 8,
+    "name": "제기차기",
+    "subtitle": "발재간을 뽐내는 전통 놀이",
+    "image": "/static/booth-8.jpg",
+    "method": "제기를 발로 차서 떨어뜨리지 않고 이어갑니다.",
+    "winCondition": "가장 많이 연속으로 찬 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 9,
+    "name": "팔씨름",
+    "subtitle": "힘과 기술의 대결",
+    "image": "/static/booth-9.jpg",
+    "method": "테이블에 팔꿈치를 대고 상대의 손등을 눕힙니다.",
+    "winCondition": "상대의 손등이 테이블에 닿으면 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 10,
+    "name": "볼링",
+    "subtitle": "정확한 스트라이크를 노려라",
+    "image": "/static/booth-10.jpg",
+    "method": "볼링공을 굴려 핀을 최대한 많이 쓰러뜨립니다.",
+    "winCondition": "가장 많은 핀을 쓰러뜨린 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 11,
+    "name": "사격",
+    "subtitle": "명중률을 겨루는 게임",
+    "image": "/static/booth-11.jpg",
+    "method": "장난감 총으로 과녁을 맞춥니다.",
+    "winCondition": "가장 높은 점수를 기록한 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 12,
+    "name": "농구 자유투",
+    "subtitle": "골대를 향한 정확한 슛",
+    "image": "/static/booth-12.jpg",
+    "method": "자유투 라인에서 농구공을 골대에 넣습니다.",
+    "winCondition": "제한 시간 내 가장 많이 넣은 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 13,
+    "name": "배드민턴",
+    "subtitle": "빠른 반응속도를 겨루는 경기",
+    "image": "/static/booth-13.jpg",
+    "method": "1:1로 배드민턴 랠리를 진행합니다.",
+    "winCondition": "먼저 11점을 달성한 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 14,
+    "name": "탁구",
+    "subtitle": "스핀과 속도의 대결",
+    "image": "/static/booth-14.jpg",
+    "method": "1:1로 탁구 경기를 진행합니다.",
+    "winCondition": "먼저 11점을 달성한 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 15,
+    "name": "줄넘기",
+    "subtitle": "지구력과 리듬감의 테스트",
+    "image": "/static/booth-15.jpg",
+    "method": "개인 줄넘기로 최대한 많이 뜁니다.",
+    "winCondition": "제한 시간 내 가장 많이 뛴 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 16,
+    "name": "훌라후프",
+    "subtitle": "리듬감과 균형의 도전",
+    "image": "/static/booth-16.jpg",
+    "method": "훌라후프를 허리에서 최대한 오래 돌립니다.",
+    "winCondition": "가장 오래 돌린 사람이 승리",
+    "conquestPoints": "8 포인트"
+  },
+  {
+    "id": 17,
+    "name": "물풍선 던지기",
+    "subtitle": "여름에 딱 맞는 시원한 게임",
+    "image": "/static/booth-17.jpg",
+    "method": "파트너와 물풍선을 주고받으며 거리를 늘립니다.",
+    "winCondition": "물풍선을 터뜨리지 않고 가장 먼 거리를 달성한 팀이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 18,
+    "name": "보물찾기",
+    "subtitle": "숨겨진 보물을 찾아라",
+    "image": "/static/booth-18.jpg",
+    "method": "지정된 구역에서 숨겨진 보물 카드를 찾습니다.",
+    "winCondition": "가장 많은 보물 카드를 찾은 사람이 승리",
+    "conquestPoints": "12 포인트"
+  },
+  {
+    "id": 19,
+    "name": "OX 퀴즈",
+    "subtitle": "상식과 지식을 겨루는 퀴즈",
+    "image": "/static/booth-19.jpg",
+    "method": "출제되는 문제에 O 또는 X로 답합니다.",
+    "winCondition": "마지막까지 살아남은 사람이 승리",
+    "conquestPoints": "10 포인트"
+  },
+  {
+    "id": 20,
+    "name": "단체 줄넘기",
+    "subtitle": "팀 호흡이 중요한 단체 경기",
+    "image": "/static/booth-20.jpg",
+    "method": "긴 줄을 돌리며 팀원 전체가 함께 뜁니다.",
+    "winCondition": "가장 많이 연속으로 뛴 팀이 승리",
+    "conquestPoints": "12 포인트"
+  }
+]

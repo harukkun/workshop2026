@@ -1,0 +1,14 @@
+@use '../styles/variables' as *;
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  margin-left: $nav-width;
+  width: $content-width;
+  min-height: 100vh;
+  padding: 40px 48px;
+  overflow-y: auto;
+}
