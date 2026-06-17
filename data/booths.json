@@ -181,7 +181,7 @@
   },
   {
     "id": 21,
-    "name": "무인도 1",
+    "name": "탈출! 지압 슬리퍼 줄넘기",
     "subtitle": "서브타이틀",
     "image": "/static/booth-21.jpg",
     "method": "게임 방식",
@@ -190,7 +190,7 @@
   },
   {
     "id": 22,
-    "name": "무인도 2",
+    "name": "탈출! 릴레이 물병 세우기",
     "subtitle": "서브타이틀",
     "image": "/static/booth-22.jpg",
     "method": "게임 방식",
@@ -199,7 +199,7 @@
   },
   {
     "id": 23,
-    "name": "무인도 3",
+    "name": "탈출! 식탁보 빼기",
     "subtitle": "서브타이틀",
     "image": "/static/booth-23.jpg",
     "method": "게임 방식",

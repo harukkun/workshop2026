@@ -30,7 +30,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
           <span />
           <span />
         </button>
-        <h1 className={styles.topTitle}>엔카 x 엔무빙</h1>
+        <img src="/logo.png" alt="로고" className={styles.topLogo} />
       </header>
 
       {isOpen && (
@@ -55,14 +55,24 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
           </button>
         </div>
         <ul className={styles.list}>
-          {booths.map((booth) => (
+          {booths.map((booth, idx) => (
             <li key={booth.id}>
+              {booth.id === 1 && (
+                <div className={styles.boothDivider}>
+                  <span>🎮 게임 부스</span>
+                </div>
+              )}
+              {booth.id === 21 && idx > 0 && (
+                <div className={styles.islandDivider}>
+                  <span>🏝️ 무인도 탈출</span>
+                </div>
+              )}
               <Link
                 href={`/booth/${booth.id}`}
-                className={`${styles.item} ${booth.id === activeId ? styles.active : ''}`}
+                className={`${styles.item} ${booth.id >= 21 ? styles.island : ''} ${booth.id === activeId ? styles.active : ''}`}
                 onClick={() => setIsOpen(false)}
               >
-                <span className={styles.title}>부스 {booth.id}</span>
+                <span className={styles.title}>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `부스 ${booth.id}`}</span>
                 <span className={styles.subtitle}>{booth.name}</span>
               </Link>
             </li>
