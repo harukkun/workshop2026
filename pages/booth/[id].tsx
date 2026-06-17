@@ -14,7 +14,7 @@ export default function BoothPage({ booth, booths }: BoothPageProps) {
   return (
     <>
       <Head>
-        <title>{`부스 ${booth.id} ${booth.name} - 체육대회`}</title>
+        <title>{`${booth.id >= 21 ? `무인도 ${booth.id - 20}` : `부스 ${booth.id}`} ${booth.name} - 체육대회`}</title>
       </Head>
       <Layout booths={booths} activeId={booth.id}>
         <BoothDetail booth={booth} />

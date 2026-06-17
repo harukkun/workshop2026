@@ -12,19 +12,19 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
   return (
     <article className={styles.detail}>
       <header className={styles.header}>
-        <h1 className={styles.title}>부스 {booth.id} {booth.name}</h1>
+        <h1 className={styles.title}>{booth.id >= 21 ? `🏝️ 무인도 ${booth.id - 20}` : `부스 ${booth.id}`} {booth.name}</h1>
         <p className={styles.subtitle}>{booth.subtitle}</p>
       </header>
 
       <div className={styles.imageWrapper}>
         {imgError ? (
           <div className={styles.placeholder}>
-            <span>부스 {booth.id} 이미지</span>
+            <span>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `부스 ${booth.id}`} 이미지</span>
           </div>
         ) : (
           <img
             src={booth.image}
-            alt={`부스 ${booth.id} ${booth.name}`}
+            alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20}` : `부스 ${booth.id}`} ${booth.name}`}
             className={styles.image}
             onError={() => setImgError(true)}
           />
