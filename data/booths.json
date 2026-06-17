@@ -178,5 +178,32 @@
     "method": "게임 방식",
     "winCondition": "승리조건",
     "conquestPoints": "도착시간"
+  },
+  {
+    "id": 21,
+    "name": "무인도 1",
+    "subtitle": "서브타이틀",
+    "image": "/static/booth-21.jpg",
+    "method": "게임 방식",
+    "winCondition": "승리조건",
+    "conquestPoints": "도착시간"
+  },
+  {
+    "id": 22,
+    "name": "무인도 2",
+    "subtitle": "서브타이틀",
+    "image": "/static/booth-22.jpg",
+    "method": "게임 방식",
+    "winCondition": "승리조건",
+    "conquestPoints": "도착시간"
+  },
+  {
+    "id": 23,
+    "name": "무인도 3",
+    "subtitle": "서브타이틀",
+    "image": "/static/booth-23.jpg",
+    "method": "게임 방식",
+    "winCondition": "승리조건",
+    "conquestPoints": "도착시간"
   }
 ]
