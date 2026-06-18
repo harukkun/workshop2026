@@ -77,6 +77,7 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
                   fill
                   sizes="(max-width: 768px) 100vw, 600px"
                   className={styles.image}
+                  priority
                   onError={() => setImgError(true)}
                 />
               </div>
