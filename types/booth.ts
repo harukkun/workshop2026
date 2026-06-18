@@ -8,6 +8,7 @@ export interface Booth {
   conquestPoints: string;
   participants: string;
   coinCondition?: string;
+  rules?: string;
   preparation?: string;
   postCheck?: string;
 }

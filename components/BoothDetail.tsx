@@ -149,6 +149,17 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           </>
         )}
 
+        {booth.rules && (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>규칙</h2>
+            <ul className={styles.conditionList}>
+              {booth.rules.split('\n').map((line, i) => (
+                <li key={i} className={styles.conditionItem}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {booth.coinCondition && (
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>코인 획득 조건</h2>
