@@ -50,7 +50,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
       <nav className={`${styles.drawer} ${isOpen ? styles.open : ''}`}>
         <div className={styles.drawerHeader}>
           <div>
-            <p className={styles.logo}>체육대회</p>
+            <p className={styles.logo}>엔무빙 체육대회</p>
             <p className={styles.logoSub}>게임 안내</p>
           </div>
           <button
