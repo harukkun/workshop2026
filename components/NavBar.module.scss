@@ -114,6 +114,7 @@
   list-style: none;
   padding: 8px 0 24px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   flex: 1;
 }
 
