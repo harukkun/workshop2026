@@ -35,6 +35,7 @@ function parseMethod(method: string): ParsedMethod | null {
       current.notes.push(trimmed);
     } else if (trimmed.startsWith('*')) {
       const text = trimmed.replace(/^\*+\s*/, '').replace(/\s*\*+$/, '').trim();
+      if (!text) continue;
       if (current) {
         current.notes.push(text);
       } else {
