@@ -13,26 +13,43 @@ interface MethodStep {
   notes: string[];
 }
 
-function parseMethod(method: string): MethodStep[] | null {
+interface ParsedMethod {
+  prelude: string[];
+  steps: MethodStep[];
+}
+
+function parseMethod(method: string): ParsedMethod | null {
   const lines = method.split('\n');
+  const prelude: string[] = [];
   const steps: MethodStep[] = [];
   let current: MethodStep | null = null;
 
   for (const line of lines) {
-    if (/^\d+\./.test(line)) {
-      current = { text: line.replace(/^\d+\.\s*/, ''), notes: [] };
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+
+    if (/^\d+\./.test(trimmed)) {
+      current = { text: trimmed.replace(/^\d+\.\s*/, ''), notes: [] };
       steps.push(current);
-    } else if (line.startsWith('※') && current) {
-      current.notes.push(line);
+    } else if (trimmed.startsWith('※') && current) {
+      current.notes.push(trimmed);
+    } else if (trimmed.startsWith('*')) {
+      const text = trimmed.replace(/^\*+\s*/, '').replace(/\s*\*+$/, '').trim();
+      if (current) {
+        current.notes.push(text);
+      } else {
+        prelude.push(text);
+      }
     }
   }
 
-  return steps.length > 0 ? steps : null;
+  if (steps.length === 0 && prelude.length === 0) return null;
+  return { prelude, steps };
 }
 
 export default function BoothDetail({ booth }: BoothDetailProps) {
   const [imgError, setImgError] = useState(false);
-  const methodSteps = useMemo(() => parseMethod(booth.method), [booth.method]);
+  const parsedMethod = useMemo(() => parseMethod(booth.method), [booth.method]);
 
   return (
     <article className={`${styles.detail}${booth.id >= 21 ? ` ${styles.island}` : ''}`}>
@@ -79,21 +96,32 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>게임 방식</h2>
-          {methodSteps ? (
-            <ol className={styles.methodList}>
-              {methodSteps.map((step, i) => (
-                <li key={i} className={styles.methodItem}>
-                  <span>{step.text}</span>
-                  {step.notes.length > 0 && (
-                    <ul className={styles.noteList}>
-                      {step.notes.map((note, j) => (
-                        <li key={j} className={styles.noteItem}>{note}</li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ol>
+          {parsedMethod ? (
+            <>
+              {parsedMethod.prelude.length > 0 && (
+                <ul className={styles.methodPrelude}>
+                  {parsedMethod.prelude.map((notice, i) => (
+                    <li key={i} className={styles.methodPreludeItem}>{notice}</li>
+                  ))}
+                </ul>
+              )}
+              {parsedMethod.steps.length > 0 && (
+                <ol className={styles.methodList}>
+                  {parsedMethod.steps.map((step, i) => (
+                    <li key={i} className={styles.methodItem}>
+                      <span>{step.text}</span>
+                      {step.notes.length > 0 && (
+                        <ul className={styles.noteList}>
+                          {step.notes.map((note, j) => (
+                            <li key={j} className={styles.noteItem}>{note}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </>
           ) : (
             <p className={styles.sectionText}>{booth.method}</p>
           )}

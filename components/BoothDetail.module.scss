@@ -140,6 +140,28 @@
   line-height: 1.65;
 }
 
+/* ─── Method prelude notices ────────────────────────────────────── */
+.methodPrelude {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.methodPreludeItem {
+  font-family: $font-body;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.5;
+  padding: 9px 12px;
+  background: var(--accent-dim);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+}
+
 /* ─── Method steps ─────────────────────────────────────────────── */
 .methodList {
   list-style: none;
