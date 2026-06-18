@@ -71,14 +71,23 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           <PhotoProvider>
             <PhotoView src={booth.image}>
               <div className={styles.imageContainer} style={{ cursor: 'zoom-in' }}>
-                <Image
-                  src={booth.image}
-                  alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  className={styles.image}
-                  onError={() => setImgError(true)}
-                />
+                {booth.image.startsWith('/api/') ? (
+                  <img
+                    src={booth.image}
+                    alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
+                    className={styles.image}
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <Image
+                    src={booth.image}
+                    alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    className={styles.image}
+                    onError={() => setImgError(true)}
+                  />
+                )}
               </div>
             </PhotoView>
           </PhotoProvider>

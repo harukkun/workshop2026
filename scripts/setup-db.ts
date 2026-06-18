@@ -23,6 +23,17 @@ async function setup() {
   `;
 
   console.log('✅ booths 테이블 생성 완료');
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS images (
+      id SERIAL PRIMARY KEY,
+      content_type TEXT NOT NULL,
+      data TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  console.log('✅ images 테이블 생성 완료');
 }
 
 setup().catch(console.error);

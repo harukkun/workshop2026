@@ -16,6 +16,8 @@ export default function AdminPage() {
   const [booths, setBooths] = useState<Booth[]>([]);
   const [editing, setEditing] = useState<Partial<Booth> | null>(null);
   const [isNew, setIsNew] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = editing ? 'hidden' : '';
@@ -76,24 +78,29 @@ export default function AdminPage() {
 
   async function handleSave(e: FormEvent) {
     e.preventDefault();
-    if (!editing) return;
+    if (!editing || saving) return;
+    if (!editing.image) { alert('이미지를 업로드해주세요'); return; }
 
-    if (isNew) {
-      await fetch('/api/booths', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify(editing),
-      });
-    } else {
-      await fetch(`/api/booths/${editing.id}`, {
-        method: 'PUT',
-        headers: headers(),
-        body: JSON.stringify(editing),
-      });
+    setSaving(true);
+    try {
+      if (isNew) {
+        await fetch('/api/booths', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify(editing),
+        });
+      } else {
+        await fetch(`/api/booths/${editing.id}`, {
+          method: 'PUT',
+          headers: headers(),
+          body: JSON.stringify(editing),
+        });
+      }
+      setEditing(null);
+      loadBooths();
+    } finally {
+      setSaving(false);
     }
-
-    setEditing(null);
-    loadBooths();
   }
 
   async function handleDelete(id: number) {
@@ -107,6 +114,32 @@ export default function AdminPage() {
 
   function updateField(key: keyof Booth, value: string | number) {
     setEditing(prev => prev ? { ...prev, [key]: value } : prev);
+  }
+
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': file.type,
+        },
+        body: file,
+      });
+
+      if (!res.ok) throw new Error('Upload failed');
+
+      const { url } = await res.json();
+      updateField('image', url);
+    } catch {
+      alert('이미지 업로드 실패');
+    } finally {
+      setUploading(false);
+    }
   }
 
   if (!loggedIn) {
@@ -171,6 +204,7 @@ export default function AdminPage() {
         {editing && (
           <div className={styles.modal} onClick={() => setEditing(null)}>
             <form className={styles.form} onClick={e => e.stopPropagation()} onSubmit={handleSave}>
+              {saving && <div className={styles.loadingOverlay}><span className={styles.spinner} /></div>}
               <h2>{isNew ? '부스 추가' : `부스 ${editing.id} 수정`}</h2>
 
               {isNew && (
@@ -189,8 +223,29 @@ export default function AdminPage() {
                 <input required value={editing.subtitle || ''} onChange={e => updateField('subtitle', e.target.value)} />
               </div>
               <div className={styles.field}>
-                <label>이미지 경로 *</label>
-                <input required value={editing.image || ''} onChange={e => updateField('image', e.target.value)} />
+                <label>이미지 *</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  disabled={uploading}
+                />
+                {uploading && <p style={{ fontSize: 13, color: '#666' }}>업로드 중...</p>}
+                {editing.image && (
+                  <div style={{ marginTop: 8 }}>
+                    <img
+                      src={editing.image}
+                      alt="미리보기"
+                      style={{ maxWidth: '100%', maxHeight: 200, borderRadius: 4 }}
+                    />
+                    <input
+                      type="text"
+                      value={editing.image}
+                      readOnly
+                      style={{ marginTop: 4, width: '100%', fontSize: 12, color: '#888' }}
+                    />
+                  </div>
+                )}
               </div>
               <div className={styles.field}>
                 <label>게임 방식 *</label>
@@ -226,8 +281,8 @@ export default function AdminPage() {
               </div>
 
               <div className={styles.formActions}>
-                <button type="button" className={styles.btnCancel} onClick={() => setEditing(null)}>취소</button>
-                <button type="submit" className={styles.btnSave}>{isNew ? '추가' : '저장'}</button>
+                <button type="button" className={styles.btnCancel} onClick={() => setEditing(null)} disabled={saving}>취소</button>
+                <button type="submit" className={styles.btnSave} disabled={saving}>{saving ? '저장 중...' : isNew ? '추가' : '저장'}</button>
               </div>
             </form>
           </div>

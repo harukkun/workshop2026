@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as *;
 
 .container {
   max-width: 960px;
@@ -139,9 +139,10 @@
 }
 
 .form {
+  position: relative;
   background: $white;
   border-radius: 8px;
-  padding: 24px;
+  padding: 24px 24px 72px;
   width: 90%;
   max-width: 640px;
   max-height: 85vh;
@@ -182,10 +183,17 @@
 }
 
 .formActions {
+  position: sticky;
+  bottom: -72px;
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  margin-top: 16px;
+  padding: 12px 0;
+  margin: 0 -24px -72px;
+  padding: 12px 24px;
+  background: $white;
+  border-top: 1px solid $border;
+  z-index: 5;
 }
 
 .logoutBtn {
@@ -196,4 +204,28 @@
   font-size: 13px;
   color: $muted;
   cursor: pointer;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid $border;
+  border-top-color: $accent-blue;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
