@@ -8,10 +8,10 @@
 
 html,
 body {
-  font-family: $font-family;
+  font-family: $font-body;
   font-size: $font-size-base;
-  color: $text-color;
-  background-color: $body-bg;
+  color: $ink;
+  background-color: $white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

@@ -1,19 +1,33 @@
-$nav-bg: #1a1a2e;
-$nav-text: #e0e0e0;
-$nav-active-bg: #16213e;
-$nav-active-text: #ffffff;
-$nav-hover-bg: #1f2b45;
+// ─── Core palette ───────────────────────────────────────────────
+$ink:               #0A0A0A;
+$white:             #FFFFFF;
+$surface:           #F4F5F7;
+$muted:             #6B7280;
+$border:            #E5E7EB;
 
-$accent: #0f3460;
-$accent-light: #e94560;
-$body-bg: #f5f5f5;
-$text-color: #333333;
-$text-secondary: #666666;
-$border-color: #e0e0e0;
+// ─── Accent: Regular games (blue) ───────────────────────────────
+$accent-blue:       #005FFF;
+$accent-blue-dim:   rgba(0, 95, 255, 0.10);
 
-$font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-$font-size-base: 16px;
+// ─── Accent: Island Escape games (orange) ───────────────────────
+$accent-orange:     #FF6B00;
+$accent-orange-dim: rgba(255, 107, 0, 0.10);
 
-$section-bg: #ffffff;
-$section-radius: 8px;
-$section-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+// ─── Win/success color ──────────────────────────────────────────
+$green:             #00B96B;
+
+// ─── Navigation ─────────────────────────────────────────────────
+$nav-bg:            #0A0A0A;
+$nav-text:          rgba(255, 255, 255, 0.75);
+$nav-active-bg:     #1A1A1A;
+$nav-active-text:   #FFFFFF;
+$nav-hover-bg:      #161616;
+
+// ─── Typography ─────────────────────────────────────────────────
+$font-display:      'Black Han Sans', 'Noto Sans KR', sans-serif;
+$font-body:         'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-size-base:    16px;
+
+// ─── Geometry ───────────────────────────────────────────────────
+$section-radius:    6px;
+$section-shadow:    none;

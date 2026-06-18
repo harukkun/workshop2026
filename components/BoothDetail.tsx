@@ -35,10 +35,13 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
   const methodSteps = useMemo(() => parseMethod(booth.method), [booth.method]);
 
   return (
-    <article className={styles.detail}>
+    <article className={`${styles.detail}${booth.id >= 21 ? ` ${styles.island}` : ''}`}>
       <header className={styles.header}>
         <h1 className={styles.title}>{booth.id >= 21 ? `🏝️ [무인도 ${booth.id - 20}] 게임 - ` : `게임 ${booth.id}`} {booth.name}</h1>
         <p className={styles.subtitle}>{booth.subtitle}</p>
+        <span className={styles.headerNumber} aria-hidden="true">
+          {booth.id >= 21 ? booth.id - 20 : booth.id}
+        </span>
       </header>
 
       <div className={styles.imageWrapper}>
@@ -96,7 +99,7 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           )}
         </section>
 
-        <section className={styles.section}>
+        <section className={`${styles.section} ${styles.winSection}`}>
           <h2 className={styles.sectionTitle}>승리 조건</h2>
           {booth.winCondition.includes('\n') ? (
             <ul className={styles.conditionList}>
