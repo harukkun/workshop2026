@@ -27,10 +27,14 @@
   box-shadow: $section-shadow;
 }
 
-.image {
+.imageContainer {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
+  aspect-ratio: 2.4 / 1;
+}
+
+.image {
+  object-fit: contain;
 }
 
 .placeholder {
@@ -68,4 +72,89 @@
   font-size: 15px;
   color: $text-color;
   line-height: 1.6;
+}
+
+.methodList {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.methodItem {
+  counter-increment: step;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  color: $text-color;
+  line-height: 1.6;
+  padding-left: 32px;
+  position: relative;
+
+  &::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $accent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+.noteList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.noteItem {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.5;
+  padding-left: 8px;
+  border-left: 2px solid $border-color;
+}
+
+.conditionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.conditionItem {
+  font-size: 15px;
+  color: $text-color;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $accent;
+  }
 }

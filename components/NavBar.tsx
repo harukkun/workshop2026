@@ -44,7 +44,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
         <div className={styles.drawerHeader}>
           <div>
             <p className={styles.logo}>체육대회</p>
-            <p className={styles.logoSub}>게임 부스 안내</p>
+            <p className={styles.logoSub}>게임 안내</p>
           </div>
           <button
             className={styles.closeBtn}
@@ -59,7 +59,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
             <li key={booth.id}>
               {booth.id === 1 && (
                 <div className={styles.boothDivider}>
-                  <span>🎮 게임 부스</span>
+                  <span>🎮 게임</span>
                 </div>
               )}
               {booth.id === 21 && idx > 0 && (
@@ -72,7 +72,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
                 className={`${styles.item} ${booth.id >= 21 ? styles.island : ''} ${booth.id === activeId ? styles.active : ''}`}
                 onClick={() => setIsOpen(false)}
               >
-                <span className={styles.title}>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `부스 ${booth.id}`}</span>
+                <span className={styles.title}>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `게임 ${booth.id}`}</span>
                 <span className={styles.subtitle}>{booth.name}</span>
               </Link>
             </li>

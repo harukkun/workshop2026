@@ -6,4 +6,8 @@ export interface Booth {
   method: string;
   winCondition: string;
   conquestPoints: string;
+  participants: string;
+  coinCondition?: string;
+  preparation?: string;
+  postCheck?: string;
 }
