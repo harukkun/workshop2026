@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from '@/components/Layout';
 import BoothDetail from '@/components/BoothDetail';
 import { Booth } from '@/types/booth';
-import boothsData from '@/data/booths.json';
+import { getAllBooths, getBoothById } from '@/lib/db';
 
 interface BoothPageProps {
   booth: Booth;
@@ -24,19 +24,20 @@ export default function BoothPage({ booth, booths }: BoothPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = boothsData.map((b) => ({
+  const booths = await getAllBooths();
+  const paths = booths.map((b) => ({
     params: { id: String(b.id) },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps: GetStaticProps<BoothPageProps> = async ({ params }) => {
-  const booths = boothsData as Booth[];
-  const booth = booths.find((b) => b.id === Number(params?.id));
+  const booths = await getAllBooths();
+  const booth = await getBoothById(Number(params?.id));
 
   if (!booth) {
     return { notFound: true };
   }
 
-  return { props: { booth, booths } };
+  return { props: { booth, booths }, revalidate: 60 };
 };
