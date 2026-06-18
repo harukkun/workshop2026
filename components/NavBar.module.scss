@@ -61,7 +61,7 @@
   top: 0;
   left: 0;
   width: 280px;
-  height: 100vh;
+  height: 100dvh;
   background-color: $nav-bg;
   color: $nav-text;
   z-index: 400;
@@ -112,7 +112,7 @@
 
 .list {
   list-style: none;
-  padding: 8px 0 24px;
+  padding: 8px 0 calc(24px + env(safe-area-inset-bottom));
   overflow-y: auto;
   overscroll-behavior: contain;
   flex: 1;
