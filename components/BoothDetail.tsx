@@ -127,23 +127,27 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           )}
         </section>
 
-        <section className={`${styles.section} ${styles.winSection}`}>
-          <h2 className={styles.sectionTitle}>승리 조건</h2>
-          {booth.winCondition.includes('\n') ? (
-            <ul className={styles.conditionList}>
-              {booth.winCondition.split('\n').map((line, i) => (
-                <li key={i} className={styles.conditionItem}>{line}</li>
-              ))}
-            </ul>
-          ) : (
-            <p className={styles.sectionText}>{booth.winCondition}</p>
-          )}
-        </section>
+        {booth.id < 21 && (
+          <>
+            <section className={`${styles.section} ${styles.winSection}`}>
+              <h2 className={styles.sectionTitle}>승리 조건</h2>
+              {booth.winCondition.includes('\n') ? (
+                <ul className={styles.conditionList}>
+                  {booth.winCondition.split('\n').map((line, i) => (
+                    <li key={i} className={styles.conditionItem}>{line}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={styles.sectionText}>{booth.winCondition}</p>
+              )}
+            </section>
 
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>점령 포인트</h2>
-          <p className={styles.sectionText}>{booth.conquestPoints}</p>
-        </section>
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>점령 포인트</h2>
+              <p className={styles.sectionText}>{booth.conquestPoints}</p>
+            </section>
+          </>
+        )}
 
         {booth.coinCondition && (
           <section className={styles.section}>
