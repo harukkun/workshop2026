@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Booth } from '@/types/booth';
 import styles from './BoothDetail.module.scss';
 
@@ -46,16 +47,20 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
             <span>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `게임 ${booth.id}`} 이미지</span>
           </div>
         ) : (
-          <div className={styles.imageContainer}>
-            <Image
-              src={booth.image}
-              alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
-              fill
-              sizes="(max-width: 768px) 100vw, 600px"
-              className={styles.image}
-              onError={() => setImgError(true)}
-            />
-          </div>
+          <PhotoProvider>
+            <PhotoView src={booth.image}>
+              <div className={styles.imageContainer} style={{ cursor: 'zoom-in' }}>
+                <Image
+                  src={booth.image}
+                  alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  className={styles.image}
+                  onError={() => setImgError(true)}
+                />
+              </div>
+            </PhotoView>
+          </PhotoProvider>
         )}
       </div>
 
