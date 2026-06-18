@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Booth } from '@/types/booth';
 import styles from './NavBar.module.scss';
@@ -12,10 +12,17 @@ interface NavBarProps {
 
 export default function NavBar({ booths, activeId }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const activeItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen && activeItemRef.current) {
+      activeItemRef.current.scrollIntoView({ block: 'center' });
+    }
   }, [isOpen]);
 
   return (
@@ -71,6 +78,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
                 href={`/booth/${booth.id}`}
                 className={`${styles.item} ${booth.id >= 21 ? styles.island : ''} ${booth.id === activeId ? styles.active : ''}`}
                 onClick={() => setIsOpen(false)}
+                ref={booth.id === activeId ? activeItemRef : null}
               >
                 <span className={styles.title}>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `게임 ${booth.id}`}</span>
                 <span className={styles.subtitle}>{booth.name}</span>
