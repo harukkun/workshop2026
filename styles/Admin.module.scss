@@ -1,231 +1,584 @@
 @use './variables' as *;
 
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px 16px;
-  font-family: $font-body;
-  color: $ink;
+// ─── Admin-specific tokens ──────────────────────────────────────
+$admin-bg:        #F8F7FA;
+$admin-accent:    #6C5CE7;
+$admin-accent-dim: rgba(108, 92, 231, 0.08);
+$admin-accent-hover: #5A4BD1;
+$admin-danger:    #FF6B6B;
+$admin-danger-dim: rgba(255, 107, 107, 0.08);
+$admin-success:   #51CF66;
+$admin-text:      #1A1A2E;
+$admin-text-sub:  #8B8FA3;
+$admin-border:    #EDEDF0;
+$admin-card:      #FFFFFF;
+$admin-radius:    12px;
+
+// ─── Login ──────────────────────────────────────────────────────
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $admin-bg;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(108, 92, 231, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
 }
+
+.loginBox {
+  width: 100%;
+  max-width: 380px;
+  padding: 0 20px;
+  text-align: center;
+
+  h1 {
+    font-family: $font-display;
+    font-size: 32px;
+    color: $admin-text;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
+  }
+}
+
+.loginSub {
+  font-size: 14px;
+  color: $admin-text-sub;
+  margin: 0 0 32px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loginInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid $admin-border;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: $font-body;
+  background: $admin-card;
+  color: $admin-text;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $admin-text-sub;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $admin-accent;
+    box-shadow: 0 0 0 3px $admin-accent-dim;
+  }
+}
+
+.loginBtn {
+  width: 100%;
+  padding: 14px;
+  background: $admin-accent;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: $font-body;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+
+  &:hover {
+    background: $admin-accent-hover;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.error {
+  color: $admin-danger;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+// ─── Dashboard container ────────────────────────────────────────
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  font-family: $font-body;
+  color: $admin-text;
+  min-height: 100vh;
+  background: $admin-bg;
+}
+
+// ─── Header ─────────────────────────────────────────────────────
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 
   h1 {
     font-family: $font-display;
-    font-size: 24px;
+    font-size: 26px;
     margin: 0;
+    color: $admin-text;
+    letter-spacing: -0.3px;
   }
 }
 
-.loginBox {
-  max-width: 400px;
-  margin: 120px auto;
-  text-align: center;
-
-  h1 {
-    font-family: $font-display;
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid $border;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-bottom: 12px;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px;
-    background: $accent-blue;
-    color: $white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-
-  .error {
-    color: #e53e3e;
-    font-size: 13px;
-    margin-top: 8px;
-  }
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  margin-bottom: 24px;
-
-  th, td {
-    padding: 8px 12px;
-    border-bottom: 1px solid $border;
-    text-align: left;
-  }
-
-  th {
-    background: $surface;
-    font-weight: 600;
-  }
-
-  td:first-child {
-    width: 50px;
-    text-align: center;
-  }
-}
-
-.actions {
+.headerActions {
   display: flex;
-  gap: 6px;
-}
-
-.btnEdit, .btnDelete, .btnAdd, .btnSave, .btnCancel {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.btnEdit {
-  background: $accent-blue-dim;
-  color: $accent-blue;
-}
-
-.btnDelete {
-  background: rgba(229, 62, 62, 0.1);
-  color: #e53e3e;
+  gap: 8px;
 }
 
 .btnAdd {
-  background: $accent-blue;
-  color: $white;
-  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: $admin-accent;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
   font-size: 14px;
+  font-weight: 600;
+  font-family: $font-body;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+
+  &:hover {
+    background: $admin-accent-hover;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
 }
 
-.btnSave {
-  background: $green;
-  color: $white;
+.logoutBtn {
+  padding: 10px 14px;
+  background: none;
+  border: 1.5px solid $admin-border;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: $font-body;
+  color: $admin-text-sub;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+
+  &:hover {
+    border-color: $admin-text-sub;
+    color: $admin-text;
+  }
 }
 
-.btnCancel {
-  background: $surface;
-  color: $muted;
+// ─── Booth cards ────────────────────────────────────────────────
+
+.boothList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.boothCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: $admin-card;
+  border: 1px solid $admin-border;
+  border-radius: $admin-radius;
+  padding: 14px 18px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    border-color: darken($admin-border, 8%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.boothThumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: $admin-bg;
+  flex-shrink: 0;
+}
+
+.boothThumbEmpty {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: $admin-accent-dim;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $admin-accent;
+  font-size: 20px;
+}
+
+.boothInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.boothId {
+  font-size: 11px;
+  font-weight: 600;
+  color: $admin-accent;
+  background: $admin-accent-dim;
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.boothName {
+  font-size: 15px;
+  font-weight: 600;
+  color: $admin-text;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boothSub {
+  font-size: 13px;
+  color: $admin-text-sub;
+  margin: 2px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boothActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btnEdit {
+  padding: 8px 14px;
+  border: 1.5px solid $admin-border;
+  border-radius: 8px;
+  background: none;
+  font-size: 13px;
+  font-family: $font-body;
+  color: $admin-text;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+
+  &:hover {
+    background: $admin-bg;
+    border-color: darken($admin-border, 8%);
+  }
+}
+
+.btnDelete {
+  padding: 8px 14px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background: $admin-danger-dim;
+  font-size: 13px;
+  font-family: $font-body;
+  color: $admin-danger;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(255, 107, 107, 0.15);
+  }
+}
+
+// ─── Empty state ────────────────────────────────────────────────
+
+.emptyState {
+  text-align: center;
+  padding: 64px 20px;
+  color: $admin-text-sub;
+  font-size: 14px;
+  border: 2px dashed $admin-border;
+  border-radius: $admin-radius;
+  background: $admin-card;
+}
+
+// ─── Modal ──────────────────────────────────────────────────────
 
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(26, 26, 46, 0.4);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   overscroll-behavior: contain;
   overflow-y: auto;
+  padding: 20px;
 }
 
 .form {
   position: relative;
-  background: $white;
-  border-radius: 8px;
-  padding: 24px 24px 72px;
-  width: 90%;
-  max-width: 640px;
+  background: $admin-card;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
   max-height: 85vh;
   overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.formHeader {
+  position: sticky;
+  top: 0;
+  background: $admin-card;
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid $admin-border;
+  z-index: 5;
+  border-radius: 16px 16px 0 0;
 
   h2 {
     font-family: $font-display;
     font-size: 20px;
-    margin: 0 0 16px;
+    margin: 0;
+    color: $admin-text;
   }
 }
 
+.formBody {
+  padding: 20px 28px;
+}
+
+.fieldGroup {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.fieldGroupLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $admin-text-sub;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $admin-border;
+}
+
 .field {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   label {
     display: block;
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 4px;
-    color: $muted;
+    margin-bottom: 5px;
+    color: $admin-text;
   }
 
   input, textarea {
     width: 100%;
-    padding: 8px 10px;
-    border: 1px solid $border;
-    border-radius: 4px;
+    padding: 10px 14px;
+    border: 1.5px solid $admin-border;
+    border-radius: 8px;
     font-size: 14px;
     font-family: $font-body;
+    color: $admin-text;
     box-sizing: border-box;
+    transition: border-color 0.15s;
+    background: $admin-card;
+
+    &::placeholder {
+      color: lighten($admin-text-sub, 10%);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $admin-accent;
+      box-shadow: 0 0 0 3px $admin-accent-dim;
+    }
   }
 
   textarea {
-    min-height: 80px;
+    min-height: 72px;
     resize: vertical;
+    line-height: 1.5;
   }
+}
+
+.imagePreview {
+  margin-top: 10px;
+
+  img {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+    border: 1px solid $admin-border;
+  }
+}
+
+.imageUrl {
+  margin-top: 6px;
+  width: 100%;
+  font-size: 12px;
+  color: $admin-text-sub;
+  background: $admin-bg;
+  border: 1px solid $admin-border;
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+}
+
+.uploadHint {
+  font-size: 13px;
+  color: $admin-text-sub;
+  margin: 6px 0 0;
 }
 
 .formActions {
   position: sticky;
-  bottom: -72px;
+  bottom: 0;
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  padding: 12px 0;
-  margin: 0 -24px -72px;
-  padding: 12px 24px;
-  background: $white;
-  border-top: 1px solid $border;
+  padding: 16px 28px;
+  background: $admin-card;
+  border-top: 1px solid $admin-border;
+  border-radius: 0 0 16px 16px;
   z-index: 5;
 }
 
-.logoutBtn {
-  background: none;
-  border: 1px solid $border;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 13px;
-  color: $muted;
+.btnSave {
+  padding: 10px 20px;
+  background: $admin-accent;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: $font-body;
   cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+
+  &:hover {
+    background: $admin-accent-hover;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
+
+.btnCancel {
+  padding: 10px 20px;
+  background: none;
+  border: 1.5px solid $admin-border;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: $font-body;
+  color: $admin-text-sub;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+
+  &:hover {
+    border-color: $admin-text-sub;
+    color: $admin-text;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Loading overlay ────────────────────────────────────────────
 
 .loadingOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 16px;
   z-index: 10;
 }
 
 .spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid $border;
-  border-top-color: $accent-blue;
+  width: 28px;
+  height: 28px;
+  border: 2.5px solid $admin-border;
+  border-top-color: $admin-accent;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+
+@media (max-width: 600px) {
+  .boothCard {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .boothActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .formHeader {
+    padding: 20px 20px 14px;
+  }
+
+  .formBody {
+    padding: 16px 20px;
+  }
+
+  .formActions {
+    padding: 14px 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
