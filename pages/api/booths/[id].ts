@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const booth = await updateBooth(id, req.body);
     if (!booth) return res.status(404).json({ error: 'Not found' });
+    await res.revalidate(`/booth/${id}`);
     return res.status(200).json(booth);
   }
 
@@ -29,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const deleted = await deleteBooth(id);
     if (!deleted) return res.status(404).json({ error: 'Not found' });
+    await res.revalidate(`/booth/${id}`);
     return res.status(204).end();
   }
 

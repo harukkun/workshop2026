@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(401).json({ error: 'Unauthorized' });
     }
     const booth = await createBooth(req.body);
+    await res.revalidate(`/booth/${booth.id}`);
     return res.status(201).json(booth);
   }
 
