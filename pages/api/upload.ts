@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { neon } from '@neondatabase/serverless';
+import { put } from '@vercel/blob';
 import { isAuthorized } from '@/lib/auth';
 
 export const config = {
@@ -29,15 +29,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const contentType = req.headers['content-type'] || 'image/png';
   const body = await readBody(req);
-  const base64 = body.toString('base64');
 
-  const sql = neon(process.env.DATABASE_URL!);
-  const rows = await sql`
-    INSERT INTO images (content_type, data)
-    VALUES (${contentType}, ${base64})
-    RETURNING id
-  `;
+  const timestamp = Date.now();
+  const filename = `booth-${timestamp}.${contentType === 'image/jpeg' ? 'jpg' : 'png'}`;
 
-  const id = rows[0].id;
-  res.status(200).json({ url: `/api/image/${id}` });
+  const blob = await put(filename, body, { contentType, access: 'public' });
+  res.status(200).json({ url: blob.url });
 }
