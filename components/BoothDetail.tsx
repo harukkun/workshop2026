@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Booth } from '@/types/booth';
-import styles from './BoothDetail.module.scss';
+import { useState, useMemo } from "react";
+import Image from "next/image";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import { Booth } from "@/types/booth";
+import styles from "./BoothDetail.module.scss";
 
 interface BoothDetailProps {
   booth: Booth;
@@ -19,7 +19,7 @@ interface ParsedMethod {
 }
 
 function parseMethod(method: string): ParsedMethod | null {
-  const lines = method.split('\n');
+  const lines = method.split("\n");
   const prelude: string[] = [];
   const steps: MethodStep[] = [];
   let current: MethodStep | null = null;
@@ -29,12 +29,15 @@ function parseMethod(method: string): ParsedMethod | null {
     if (!trimmed) continue;
 
     if (/^\d+\./.test(trimmed)) {
-      current = { text: trimmed.replace(/^\d+\.\s*/, ''), notes: [] };
+      current = { text: trimmed.replace(/^\d+\.\s*/, ""), notes: [] };
       steps.push(current);
-    } else if (trimmed.startsWith('※') && current) {
+    } else if (trimmed.startsWith("※") && current) {
       current.notes.push(trimmed);
-    } else if (trimmed.startsWith('*')) {
-      const text = trimmed.replace(/^\*+\s*/, '').replace(/\s*\*+$/, '').trim();
+    } else if (trimmed.startsWith("*")) {
+      const text = trimmed
+        .replace(/^\*+\s*/, "")
+        .replace(/\s*\*+$/, "")
+        .trim();
       if (!text) continue;
       if (current) {
         current.notes.push(text);
@@ -53,9 +56,21 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
   const parsedMethod = useMemo(() => parseMethod(booth.method), [booth.method]);
 
   return (
-    <article className={`${styles.detail}${booth.id >= 21 ? ` ${styles.island}` : ''}`}>
+    <article
+      className={`${styles.detail}${booth.id >= 21 ? ` ${styles.island}` : ""}`}
+    >
       <header className={styles.header}>
-        <h1 className={styles.title}>{booth.id >= 21 ? `🏝️ [무인도 ${booth.id - 20}] 게임 - ` : `게임 ${booth.id}`} {booth.name}</h1>
+        <h1 className={styles.title}>
+          {booth.id >= 21
+            ? `🏝️ [무인도 게임 ${booth.id - 20}]`
+            : `게임 ${booth.id}`}{" "}
+          {booth.name.split("\n").map((line, i, arr) => (
+            <div key={i}>
+              {line}
+              {i < arr.length - 1 && <br />}
+            </div>
+          ))}
+        </h1>
         <p className={styles.subtitle}>{booth.subtitle}</p>
         <span className={styles.headerNumber} aria-hidden="true">
           {booth.id >= 21 ? booth.id - 20 : booth.id}
@@ -65,12 +80,18 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
       <div className={styles.imageWrapper}>
         {imgError ? (
           <div className={styles.placeholder}>
-            <span>{booth.id >= 21 ? `무인도 ${booth.id - 20}` : `게임 ${booth.id}`} 이미지</span>
+            <span>
+              {booth.id >= 21 ? `무인도 ${booth.id - 20}` : `게임 ${booth.id}`}{" "}
+              이미지
+            </span>
           </div>
         ) : (
           <PhotoProvider>
             <PhotoView src={booth.image}>
-              <div className={styles.imageContainer} style={{ cursor: 'zoom-in' }}>
+              <div
+                className={styles.imageContainer}
+                style={{ cursor: "zoom-in" }}
+              >
                 <Image
                   src={booth.image}
                   alt={`${booth.id >= 21 ? `무인도 ${booth.id - 20} 설명 이미지` : `게임 ${booth.id} 설명 이미지`}`}
@@ -88,10 +109,12 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
 
       <div className={styles.sections}>
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>참여 / 인원 구성</h2>
+          <h2 className={styles.sectionTitle}>게임 참여 인원</h2>
           <ul className={styles.conditionList}>
-            {booth.participants.split('\n').map((line, i) => (
-              <li key={i} className={styles.conditionItem}>{line}</li>
+            {booth.participants.split("\n").map((line, i) => (
+              <li key={i} className={styles.conditionItem}>
+                {line}
+              </li>
             ))}
           </ul>
         </section>
@@ -103,7 +126,9 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
               {parsedMethod.prelude.length > 0 && (
                 <ul className={styles.methodPrelude}>
                   {parsedMethod.prelude.map((notice, i) => (
-                    <li key={i} className={styles.methodPreludeItem}>{notice}</li>
+                    <li key={i} className={styles.methodPreludeItem}>
+                      {notice}
+                    </li>
                   ))}
                 </ul>
               )}
@@ -115,7 +140,9 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
                       {step.notes.length > 0 && (
                         <ul className={styles.noteList}>
                           {step.notes.map((note, j) => (
-                            <li key={j} className={styles.noteItem}>{note}</li>
+                            <li key={j} className={styles.noteItem}>
+                              {note}
+                            </li>
                           ))}
                         </ul>
                       )}
@@ -132,10 +159,12 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
         {booth.winCondition && (
           <section className={`${styles.section} ${styles.winSection}`}>
             <h2 className={styles.sectionTitle}>승리 조건</h2>
-            {booth.winCondition.includes('\n') ? (
+            {booth.winCondition.includes("\n") ? (
               <ul className={styles.conditionList}>
-                {booth.winCondition.split('\n').map((line, i) => (
-                  <li key={i} className={styles.conditionItem}>{line}</li>
+                {booth.winCondition.split("\n").map((line, i) => (
+                  <li key={i} className={styles.conditionItem}>
+                    {line}
+                  </li>
                 ))}
               </ul>
             ) : (
@@ -155,8 +184,10 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>규칙</h2>
             <ul className={styles.conditionList}>
-              {booth.rules.split('\n').map((line, i) => (
-                <li key={i} className={styles.conditionItem}>{line}</li>
+              {booth.rules.split("\n").map((line, i) => (
+                <li key={i} className={styles.conditionItem}>
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
@@ -166,8 +197,10 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>코인 획득 조건</h2>
             <ul className={styles.conditionList}>
-              {booth.coinCondition.split('\n').map((line, i) => (
-                <li key={i} className={styles.conditionItem}>{line}</li>
+              {booth.coinCondition.split("\n").map((line, i) => (
+                <li key={i} className={styles.conditionItem}>
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
@@ -177,8 +210,10 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>게임 전 준비사항</h2>
             <ul className={styles.conditionList}>
-              {booth.preparation.split('\n').map((line, i) => (
-                <li key={i} className={styles.conditionItem}>{line}</li>
+              {booth.preparation.split("\n").map((line, i) => (
+                <li key={i} className={styles.conditionItem}>
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
@@ -188,8 +223,10 @@ export default function BoothDetail({ booth }: BoothDetailProps) {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>게임 종료 후 체크</h2>
             <ul className={styles.conditionList}>
-              {booth.postCheck.split('\n').map((line, i) => (
-                <li key={i} className={styles.conditionItem}>{line}</li>
+              {booth.postCheck.split("\n").map((line, i) => (
+                <li key={i} className={styles.conditionItem}>
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
