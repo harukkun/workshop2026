@@ -88,6 +88,7 @@ $battle-red-dim: rgba(229, 62, 62, 0.08);
 .filterChips {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .chip {
