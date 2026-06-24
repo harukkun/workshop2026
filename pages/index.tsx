@@ -5,7 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/booth/1');
+    router.replace('/battle');
   }, [router]);
 
   return null;

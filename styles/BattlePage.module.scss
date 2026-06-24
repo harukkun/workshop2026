@@ -1,0 +1,267 @@
+@use './variables' as *;
+
+$battle-red: #E53E3E;
+$battle-red-dim: rgba(229, 62, 62, 0.08);
+
+/* ─── Page ────────────────────────────────────────────────────── */
+.page {
+  max-width: 100%;
+  position: relative;
+}
+
+/* ─── Hero header ─────────────────────────────────────────────── */
+.hero {
+  background: $ink;
+  margin: -68px -16px 0;
+  padding: 84px 20px 28px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: 'VS';
+    position: absolute;
+    right: -10px;
+    bottom: -18px;
+    font-family: $font-display;
+    font-size: 120px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+  }
+}
+
+.heroBadge {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: $battle-red;
+  background: $battle-red-dim;
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+}
+
+.heroTitle {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: 400;
+  color: $white;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Filter bar ──────────────────────────────────────────────── */
+.filterBar {
+  position: sticky;
+  top: 52px;
+  z-index: 100;
+  background: $white;
+  margin: 0 -16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterLabel {
+  font-family: $font-body;
+  font-size: 11px;
+  font-weight: 700;
+  color: $muted;
+  width: 28px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.filterChips {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  font-family: $font-body;
+  font-size: 13px;
+  font-weight: 600;
+  color: $muted;
+  background: $white;
+  border: 1.5px solid $border;
+  border-radius: 8px;
+  padding: 6px 0;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.chipActive {
+  background: $ink;
+  border-color: $ink;
+  color: $white;
+}
+
+/* ─── Filter status ───────────────────────────────────────────── */
+.filterStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 4px;
+}
+
+.filterCount {
+  font-family: $font-body;
+  font-size: 13px;
+  font-weight: 600;
+  color: $ink;
+}
+
+.resetBtn {
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: 500;
+  color: $muted;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  &:hover {
+    color: $ink;
+    background: $surface;
+  }
+}
+
+/* ─── Empty state ─────────────────────────────────────────────── */
+.empty {
+  text-align: center;
+  padding: 48px 0;
+
+  p {
+    font-family: $font-body;
+    font-size: 14px;
+    color: $muted;
+  }
+}
+
+/* ─── Matchup list ────────────────────────────────────────────── */
+.matchupList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+}
+
+/* ─── Card ────────────────────────────────────────────────────── */
+.card {
+  background: $white;
+  border: 1.5px solid $border;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: $surface;
+  border-bottom: 1px solid $border;
+}
+
+.cardBadge {
+  font-family: $font-body;
+  font-size: 11px;
+  font-weight: 700;
+  color: $accent-blue;
+  min-width: 20px;
+}
+
+.cardName {
+  font-family: $font-body;
+  font-size: 13px;
+  font-weight: 500;
+  color: $ink;
+  line-height: 1.3;
+}
+
+/* ─── Arena (VS layout) ──────────────────────────────────────── */
+.arena {
+  display: flex;
+  align-items: center;
+  padding: 16px 10px;
+}
+
+.teamSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.teamHighlight {
+  background: rgba(0, 95, 255, 0.06);
+
+  .teamGroup {
+    color: $accent-blue;
+  }
+
+  .teamNum {
+    color: $accent-blue;
+  }
+}
+
+.teamGroup {
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: 500;
+  color: $muted;
+  letter-spacing: 0.02em;
+}
+
+.teamNum {
+  font-family: $font-display;
+  font-size: 22px;
+  font-weight: 400;
+  color: $ink;
+  line-height: 1.1;
+}
+
+/* ─── VS divider ──────────────────────────────────────────────── */
+.vsDivider {
+  flex-shrink: 0;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.vsText {
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: 400;
+  color: $battle-red;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}

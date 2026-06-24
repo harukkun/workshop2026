@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Booth } from '@/types/booth';
 import styles from './NavBar.module.scss';
 
@@ -13,6 +14,8 @@ interface NavBarProps {
 export default function NavBar({ booths, activeId }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const activeItemRef = useRef<HTMLAnchorElement>(null);
+  const router = useRouter();
+  const isBattlePage = router.pathname === '/battle';
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -62,6 +65,19 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
           </button>
         </div>
         <ul className={styles.list}>
+          <li>
+            <div className={styles.opsDivider}>
+              <span>📋 운영</span>
+            </div>
+            <Link
+              href="/battle"
+              className={`${styles.item} ${styles.opsItem} ${isBattlePage ? styles.active : ''}`}
+              onClick={() => setIsOpen(false)}
+              ref={isBattlePage ? activeItemRef : null}
+            >
+              <span className={styles.title}>[필독] 첫번째 대결팀</span>
+            </Link>
+          </li>
           {booths.map((booth, idx) => (
             <li key={booth.id}>
               {booth.id === 1 && (

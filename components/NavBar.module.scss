@@ -160,6 +160,50 @@
   margin-top: 2px;
 }
 
+/* ─── Ops section ─────────────────────────────────────────────── */
+.opsDivider {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px 6px;
+
+  span {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    color: #E53E3E;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    margin-left: 10px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.opsItem {
+  .title {
+    color: #E53E3E;
+  }
+
+  &:hover {
+    background-color: rgba(229, 62, 62, 0.10);
+  }
+
+  &.active {
+    background-color: rgba(229, 62, 62, 0.14);
+    border-left-color: #E53E3E;
+
+    .title {
+      color: #FC8181;
+    }
+  }
+}
+
 /* ─── Section dividers ─────────────────────────────────────────── */
 .boothDivider {
   display: flex;
