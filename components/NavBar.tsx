@@ -16,6 +16,7 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
   const activeItemRef = useRef<HTMLAnchorElement>(null);
   const router = useRouter();
   const isBattlePage = router.pathname === '/battle';
+  const isRulebookPage = router.pathname === '/rulebook';
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -76,6 +77,16 @@ export default function NavBar({ booths, activeId }: NavBarProps) {
               ref={isBattlePage ? activeItemRef : null}
             >
               <span className={styles.title}>[필독] 첫번째 대결팀</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/rulebook"
+              className={`${styles.item} ${styles.opsItem} ${isRulebookPage ? styles.active : ''}`}
+              onClick={() => setIsOpen(false)}
+              ref={isRulebookPage ? activeItemRef : null}
+            >
+              <span className={styles.title}>오후게임 룰북</span>
             </Link>
           </li>
           {booths.map((booth, idx) => (
